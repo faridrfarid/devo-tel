@@ -5,20 +5,12 @@ import { DEFAULT_LANGUAGE } from '@configs/setup';
 
 const initI18n = async () => {
   await i18n
-    .use(LanguageDetector)
-    .use(initReactI18next)
-    .init({
-      fallbackLng: DEFAULT_LANGUAGE,
-      debug: true,
-      load: 'languageOnly',
-      keySeparator: false,
-      interpolation: {
-        escapeValue: false,
-      },
-      react: {
-        wait: true,
-      },
-    });
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    fallbackLng: DEFAULT_LANGUAGE,
+    debug: true,
+  });
 };
 
 initI18n().catch((error) => {
