@@ -4,6 +4,7 @@
         "paths": {
             "@pages/*": ["pages/*"],
             "@assets/*": ["assets/*"],
+            "@components/*": ["components/*"],
             "@configs/*": ["configs/*"],
             "@routes/*": ["routes/*"],
             "@redux/*": ["redux/*"],

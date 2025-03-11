@@ -5,6 +5,7 @@ import ListHomePage from '@pages/list'
 import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import MainContainer from 'components/layout'
 
 const AppRouter: React.FC = () => {
     const { i18n } = useTranslation()
@@ -17,8 +18,10 @@ const AppRouter: React.FC = () => {
     return (
         <Router>
             <Routes>
-                <Route path={ROUTES.LIST} element={<ListHomePage />} />
-                <Route path={ROUTES.FORM} element={<FormHomePage />} />
+                <Route path={ROUTES.HOME} element={<MainContainer />}>
+                    <Route index element={<ListHomePage />} />
+                    <Route path={ROUTES.FORM} element={<FormHomePage />} />
+                </Route>
             </Routes>
         </Router>
     )
