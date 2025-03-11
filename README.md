@@ -8,8 +8,17 @@ This template provides a minimal setup to get React working in Vite with HMR and
 
 ## Config Project For run 
 
-- Do npm install
-- Do npm run dev
+
+### Setup instruction
+- Add .env file in root of project
+- Complete .env file with same values from .env.example
+- npm install
+- npm run dev
+
+
+### API usage details
+- change base url from .env file if needed
+- change api base urls from src > apis > request.types.ts file const ApiEndpoints
 
 # Available Pages
 
