@@ -1,15 +1,15 @@
 export interface IInsuranceFormResponseType {
-  structure: string;
+    structure: string;
 }
 
 export interface IInsuranceFormSubmitResponseType {
-  structure: string;
+    structure: string;
 }
 
 export interface IInsuranceFormSubmitRequestType {
-  structure: string;
+    structure: string;
 }
 
 export interface IInsuranceFormSubmissionResponseType {
-  structure: string;
+    structure: string;
 }
