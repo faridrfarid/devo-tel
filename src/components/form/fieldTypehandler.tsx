@@ -12,6 +12,7 @@ import FieldSelectType from './fieldSelectType';
 import FieldRadioType from './fieldRadioType';
 import FieldDateType from './fieldDateType';
 import FieldInputRangeType from './fieldInputRangeType';
+import FieldCheckboxType from './fieldCheckboxType';
 
 interface FieldTypeHandlerType {
     field: FormFieldType;
@@ -67,15 +68,13 @@ const FieldTypeHandler: React.FC<FieldTypeHandlerType> = ({
                     fieldContent={field}
                 />
             )}
-            {field.type !== 'text' &&
-                field.type !== 'select' &&
-                field.type !== 'radio' &&
-                field.type !== 'date' &&
-                field.type !== 'number' && (
-                    <span className="text-black font-medium text-sm">
-                        {field.type}
-                    </span>
-                )}
+            {field.type === 'checkbox' && (
+                <FieldCheckboxType
+                    watch={watch}
+                    control={control}
+                    fieldContent={field}
+                />
+            )}
         </div>
     );
 };
