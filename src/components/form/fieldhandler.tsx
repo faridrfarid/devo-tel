@@ -23,9 +23,11 @@ const FieldHandler: React.FC<FieldHandlerType> = ({
 }) => {
     return (
         <div className="w-full flex flex-col">
-            <span className="text-black font-bold text-lg mb-1">
-                {field.label}
-            </span>
+            {field.type === 'group' && (
+                <span className="text-black font-bold text-lg mb-1">
+                    {field.label}
+                </span>
+            )}
             {field.type === 'group' ? (
                 field?.fields?.map((item) => (
                     <FieldTypeHandler

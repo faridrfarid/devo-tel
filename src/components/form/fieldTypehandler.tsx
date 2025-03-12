@@ -25,9 +25,6 @@ const FieldTypeHandler: React.FC<FieldTypeHandlerType> = ({
 }) => {
     return (
         <div className="w-full flex flex-col mb-1">
-            <span className="text-black font-medium text-md mb-1">
-                {field.label}
-            </span>
             {field.type === 'text' && (
                 <FieldTextType
                     watch={watch}
@@ -44,7 +41,11 @@ const FieldTypeHandler: React.FC<FieldTypeHandlerType> = ({
                 />
             )}
             {field.type === 'radio' && (
-                <FieldRadioType control={control} fieldContent={field} />
+                <FieldRadioType
+                    watch={watch}
+                    control={control}
+                    fieldContent={field}
+                />
             )}
             {field.type !== 'text' &&
                 field.type !== 'select' &&
