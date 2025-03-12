@@ -8,6 +8,7 @@ import {
 } from 'react-hook-form';
 import FieldTextType from './fieldTextType';
 import FieldSelectType from './fieldSelectType';
+import FieldRadioType from './fieldRadioType';
 
 interface FieldTypeHandlerType {
     field: FormFieldType;
@@ -42,11 +43,16 @@ const FieldTypeHandler: React.FC<FieldTypeHandlerType> = ({
                     resetField={resetField}
                 />
             )}
-            {field.type !== 'text' && field.type !== 'select' && (
-                <span className="text-black font-medium text-sm">
-                    {field.type}
-                </span>
+            {field.type === 'radio' && (
+                <FieldRadioType control={control} fieldContent={field} />
             )}
+            {field.type !== 'text' &&
+                field.type !== 'select' &&
+                field.type !== 'radio' && (
+                    <span className="text-black font-medium text-sm">
+                        {field.type}
+                    </span>
+                )}
         </div>
     );
 };
