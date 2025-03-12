@@ -1,16 +1,17 @@
+import { InsuranceFormResponseType } from '@apis/entities/insurance.entities';
 import { request } from '@apis/request';
-import { FC, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+import FormCreatorBase from '@components/form';
+import { FC, useEffect, useState } from 'react';
 
 const FormHomePage: FC = () => {
-    const { t } = useTranslation();
+    const [forms, setForms] = useState<InsuranceFormResponseType[]>([]);
     async function handleGetData() {
         try {
             const response = await request({
                 method: 'GET',
                 url: 'insuranceForms',
             });
-            console.log(response.data);
+            setForms(response.data);
         } catch (e) {
             console.log(e);
         }
@@ -18,7 +19,15 @@ const FormHomePage: FC = () => {
     useEffect(() => {
         handleGetData();
     }, []);
-    return <div>{t('welcome')} to Form Home page </div>;
+    return (
+        <div>
+            <div>
+                {forms.map((item) => (
+                    <FormCreatorBase key={item.formId} form={item} />
+                ))}
+            </div>
+        </div>
+    );
 };
 
 export default FormHomePage;
