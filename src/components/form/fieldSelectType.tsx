@@ -8,6 +8,9 @@ import {
     UseFormWatch,
     UseFormResetField,
 } from 'react-hook-form';
+import { Select } from 'antd';
+
+const { Option } = Select;
 
 interface FieldSelectTypeType {
     fieldContent: FormFieldType;
@@ -94,36 +97,17 @@ const FieldSelectType: React.FC<FieldSelectTypeType> = ({
                             : false,
                     }}
                     render={({ field, fieldState: { error } }) => (
-                        <select
-                            id={fieldContent.id}
-                            className={`text-sm p-2 rounded w-full outline-none ${
-                                error
-                                    ? 'text-red-500 bg-red-100'
-                                    : 'text-[#121212] bg-white'
-                            }`}
-                            {...field}
+                        <Select
+                            placeholder="Select an option"
+                            style={{ width: '100%' }}
                             onChange={field.onChange}
+                            value={field.value}
                         >
-                            {!ownChanges && (
-                                <option
-                                    value=""
-                                    key={-10}
-                                    className="text-black"
-                                >
-                                    {'no option selected'}
-                                </option>
-                            )}
                             {options &&
                                 options.map((item, index) => (
-                                    <option
-                                        value={item}
-                                        key={index}
-                                        className="text-black"
-                                    >
-                                        {item}
-                                    </option>
+                                    <Option key={index} value={item}>{item}</Option>
                                 ))}
-                        </select>
+                        </Select>
                     )}
                 />
             )}

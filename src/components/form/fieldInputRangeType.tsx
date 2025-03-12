@@ -1,26 +1,23 @@
 import { FormFieldType } from '@apis/entities/insurance.entities';
 import React, { useEffect, useState } from 'react';
+import { Slider } from 'antd';
 import {
     Control,
+    FieldValues,
     Controller,
     UseFormWatch,
-    FieldValues,
-    UseFormSetValue,
 } from 'react-hook-form';
-import { Radio } from 'antd';
 
-interface FieldRadioTypeType {
+interface FieldInputRangeTypeType {
     fieldContent: FormFieldType;
-    control: Control;
     watch: UseFormWatch<FieldValues>;
-    setValue: UseFormSetValue<FieldValues>;
+    control: Control;
 }
 
-const FieldRadioType: React.FC<FieldRadioTypeType> = ({
+const FieldInputRangeType: React.FC<FieldInputRangeTypeType> = ({
     fieldContent,
     control,
     watch,
-    setValue,
 }) => {
     const [visible, setVisible] = useState(true);
     const visibleWatcher = fieldContent?.visibility
@@ -42,13 +39,6 @@ const FieldRadioType: React.FC<FieldRadioTypeType> = ({
         }
     }, [visibleWatcher]);
 
-    useEffect(() => {
-        setValue(
-            fieldContent.id,
-            fieldContent.options ? fieldContent.options[0] : ''
-        );
-    }, [fieldContent]);
-
     return (
         <>
             {visible && (
@@ -66,22 +56,14 @@ const FieldRadioType: React.FC<FieldRadioTypeType> = ({
                             : false,
                     }}
                     render={({ field, fieldState: { error } }) => (
-                        <>
-                            <div className="flex flex-row items-center">
-                                {fieldContent.options?.map((item) => (
-                                    <Radio
-                                        value={item}
-                                        checked={field.value === item}
-                                        onChange={field.onChange}
-                                    >
-                                        <span className="ml-2 uppercase">
-                                            {item}
-                                        </span>
-                                    </Radio>
-                                ))}
-                            </div>
-                            {error && <span>{error?.message}</span>}
-                        </>
+                        <Slider
+                            min={fieldContent?.validation?.min ?? 0}
+                            max={fieldContent?.validation?.max ?? 100}
+                            step={1}
+                            tooltip={{ open: true }}
+                            value={field.value}
+                            onChange={field.onChange}
+                        />
                     )}
                 />
             )}
@@ -89,4 +71,4 @@ const FieldRadioType: React.FC<FieldRadioTypeType> = ({
     );
 };
 
-export default FieldRadioType;
+export default FieldInputRangeType;
