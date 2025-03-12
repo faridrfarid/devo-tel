@@ -1,9 +1,9 @@
 import { AxiosError } from 'axios';
 import {
-    IInsuranceFormResponseType,
-    IInsuranceFormSubmissionResponseType,
-    IInsuranceFormSubmitRequestType,
-    IInsuranceFormSubmitResponseType,
+    InsuranceFormResponseType,
+    InsuranceFormSubmissionResponseType,
+    InsuranceFormSubmitRequestType,
+    InsuranceFormSubmitResponseType,
 } from './entities/insurance.entities';
 
 type IErrorResponse = {
@@ -26,9 +26,9 @@ type IEndpointType = Record<
 >;
 
 export interface IResponseTypes {
-    insuranceForms: IInsuranceFormResponseType;
-    insuranceFormsSubmit: IInsuranceFormSubmitResponseType;
-    insuranceFormsSubmissions: IInsuranceFormSubmissionResponseType;
+    insuranceForms: InsuranceFormResponseType[];
+    insuranceFormsSubmit: InsuranceFormSubmitResponseType;
+    insuranceFormsSubmissions: InsuranceFormSubmissionResponseType;
 }
 
 export interface IUrlParamTypes {
@@ -39,7 +39,7 @@ export interface IUrlParamTypes {
 
 export interface IRequestBodyTypes {
     insuranceForms: null;
-    insuranceFormsSubmit: IInsuranceFormSubmitRequestType;
+    insuranceFormsSubmit: InsuranceFormSubmitRequestType;
     insuranceFormsSubmissions: null;
 }
 

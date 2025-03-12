@@ -1,15 +1,48 @@
-export interface IInsuranceFormResponseType {
+export interface FormFieldType {
+    id: string;
+    label: string;
+    type:
+        | 'group'
+        | 'text'
+        | 'date'
+        | 'select'
+        | 'radio'
+        | 'number'
+        | 'checkbox';
+    required?: boolean;
+    fields?: FormFieldType[];
+    options?: string[];
+    dynamicOptions?: {
+        dependsOn: string;
+        endpoint: string;
+        method: 'GET';
+    };
+    visibility?: {
+        dependsOn: string;
+        condition: 'equals';
+        value: 'Yes' | 'No';
+    };
+    validation?: {
+        min?: number;
+        max?: number;
+        pattern?: string;
+    };
+}
+
+export interface InsuranceFormResponseType {
+    formId: string;
+    title: string;
+    fields: FormFieldType[];
+}
+
+export interface InsuranceFormSubmitResponseType {
     structure: string;
 }
 
-export interface IInsuranceFormSubmitResponseType {
+export interface InsuranceFormSubmitRequestType {
     structure: string;
 }
 
-export interface IInsuranceFormSubmitRequestType {
-    structure: string;
-}
-
-export interface IInsuranceFormSubmissionResponseType {
+export interface InsuranceFormSubmissionResponseType {
     structure: string;
 }
