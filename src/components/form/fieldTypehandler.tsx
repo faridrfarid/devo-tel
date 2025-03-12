@@ -5,6 +5,7 @@ import {
     FieldValues,
     UseFormWatch,
     UseFormResetField,
+    UseFormSetValue,
 } from 'react-hook-form';
 import FieldTextType from './fieldTextType';
 import FieldSelectType from './fieldSelectType';
@@ -15,6 +16,7 @@ interface FieldTypeHandlerType {
     watch: UseFormWatch<FieldValues>;
     control: Control;
     resetField: UseFormResetField<FieldValues>;
+    setValue: UseFormSetValue<FieldValues>;
 }
 
 const FieldTypeHandler: React.FC<FieldTypeHandlerType> = ({
@@ -22,6 +24,7 @@ const FieldTypeHandler: React.FC<FieldTypeHandlerType> = ({
     watch,
     control,
     resetField,
+    setValue,
 }) => {
     return (
         <div className="w-full flex flex-col mb-1">
@@ -44,6 +47,7 @@ const FieldTypeHandler: React.FC<FieldTypeHandlerType> = ({
                 <FieldRadioType
                     watch={watch}
                     control={control}
+                    setValue={setValue}
                     fieldContent={field}
                 />
             )}
