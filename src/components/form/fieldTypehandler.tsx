@@ -10,6 +10,7 @@ import {
 import FieldTextType from './fieldTextType';
 import FieldSelectType from './fieldSelectType';
 import FieldRadioType from './fieldRadioType';
+import FieldDateType from './fieldDateType';
 
 interface FieldTypeHandlerType {
     field: FormFieldType;
@@ -51,9 +52,17 @@ const FieldTypeHandler: React.FC<FieldTypeHandlerType> = ({
                     fieldContent={field}
                 />
             )}
+            {field.type === 'date' && (
+                <FieldDateType
+                    watch={watch}
+                    control={control}
+                    fieldContent={field}
+                />
+            )}
             {field.type !== 'text' &&
                 field.type !== 'select' &&
-                field.type !== 'radio' && (
+                field.type !== 'radio' &&
+                field.type !== 'date' && (
                     <span className="text-black font-medium text-sm">
                         {field.type}
                     </span>
