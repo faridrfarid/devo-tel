@@ -5,18 +5,19 @@ import { FC, useEffect, useState } from 'react';
 
 const FormHomePage: FC = () => {
     const [forms, setForms] = useState<InsuranceFormResponseType[]>([]);
-    async function handleGetData() {
-        try {
-            const response = await request({
-                method: 'GET',
-                url: 'insuranceForms',
-            });
-            setForms(response.data);
-        } catch (e) {
-            console.log(e);
-        }
-    }
+
     useEffect(() => {
+        async function handleGetData() {
+            try {
+                const response = await request({
+                    method: 'GET',
+                    url: 'insuranceForms',
+                });
+                setForms(response.data);
+            } catch (e) {
+                console.log(e);
+            }
+        }
         handleGetData();
     }, []);
     return (

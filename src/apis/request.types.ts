@@ -4,6 +4,7 @@ import {
     InsuranceFormSubmissionResponseType,
     InsuranceFormSubmitRequestType,
     InsuranceFormSubmitResponseType,
+    StatesResponseType,
 } from './entities/insurance.entities';
 
 type IErrorResponse = {
@@ -27,24 +28,28 @@ type IEndpointType = Record<
 
 export interface IResponseTypes {
     insuranceForms: InsuranceFormResponseType[];
+    states: StatesResponseType;
     insuranceFormsSubmit: InsuranceFormSubmitResponseType;
     insuranceFormsSubmissions: InsuranceFormSubmissionResponseType;
 }
 
 export interface IUrlParamTypes {
     insuranceForms: null;
+    states: null;
     insuranceFormsSubmit: null;
     insuranceFormsSubmissions: null;
 }
 
 export interface IRequestBodyTypes {
     insuranceForms: null;
+    states: null;
     insuranceFormsSubmit: InsuranceFormSubmitRequestType;
     insuranceFormsSubmissions: null;
 }
 
 export const ApiEndpoints: IEndpointType = {
     insuranceForms: () => `/api/insurance/forms`,
+    states: () => `/api/getStates`,
     insuranceFormsSubmit: () => `/api/insurance/forms/submit`,
     insuranceFormsSubmissions: () => `/api/insurance/forms/submission`,
 };

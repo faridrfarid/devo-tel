@@ -1,18 +1,25 @@
 import { FormFieldType } from '@apis/entities/insurance.entities';
 import React from 'react';
-import { Control, FieldValues, UseFormWatch } from 'react-hook-form';
+import {
+    Control,
+    FieldValues,
+    UseFormWatch,
+    UseFormResetField,
+} from 'react-hook-form';
 import FieldTypeHandler from './fieldTypehandler';
 
 interface FieldHandlerType {
     field: FormFieldType;
     watch: UseFormWatch<FieldValues>;
     control: Control;
+    resetField: UseFormResetField<FieldValues>;
 }
 
 const FieldHandler: React.FC<FieldHandlerType> = ({
     field,
     control,
     watch,
+    resetField,
 }) => {
     return (
         <div className="w-full flex flex-col">
@@ -24,6 +31,7 @@ const FieldHandler: React.FC<FieldHandlerType> = ({
                     <FieldTypeHandler
                         control={control}
                         watch={watch}
+                        resetField={resetField}
                         field={item}
                     />
                 ))
@@ -31,6 +39,7 @@ const FieldHandler: React.FC<FieldHandlerType> = ({
                 <FieldTypeHandler
                     control={control}
                     watch={watch}
+                    resetField={resetField}
                     field={field}
                 />
             )}

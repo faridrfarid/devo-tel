@@ -34,6 +34,10 @@ export interface InsuranceFormResponseType {
     title: string;
     fields: FormFieldType[];
 }
+export interface StatesResponseType {
+    country: string;
+    states: string[];
+}
 
 export interface InsuranceFormSubmitResponseType {
     structure: string;

@@ -11,7 +11,7 @@ interface FormCreatorBaseType {
 const FormCreatorBase: React.FC<FormCreatorBaseType> = ({ form }) => {
     const { t } = useTranslation();
     const [loading, setLoading] = useState(false);
-    const { handleSubmit, control, watch, clearErrors } = useForm({
+    const { handleSubmit, control, watch, clearErrors, resetField } = useForm({
         mode: 'onSubmit',
     });
 
@@ -33,6 +33,7 @@ const FormCreatorBase: React.FC<FormCreatorBaseType> = ({ form }) => {
                         key={item.id}
                         watch={watch}
                         control={control}
+                        resetField={resetField}
                         field={item}
                     />
                 ))}
