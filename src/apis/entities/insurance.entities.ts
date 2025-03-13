@@ -40,7 +40,8 @@ export interface StatesResponseType {
 }
 
 export interface InsuranceFormSubmitResponseType {
-    structure: string;
+    message: string;
+    status: 'success';
 }
 
 export interface InsuranceFormSubmitRequestType {
