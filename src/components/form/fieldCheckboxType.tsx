@@ -42,7 +42,7 @@ const FieldCheckboxType: React.FC<FieldCheckboxTypeType> = ({
     return (
         <>
             {visible && (
-                <span className="text-black font-medium text-md mb-1">
+                <span className="text-black font-medium text-base my-2">
                     {fieldContent.label}
                 </span>
             )}
@@ -56,14 +56,16 @@ const FieldCheckboxType: React.FC<FieldCheckboxTypeType> = ({
                             : false,
                     }}
                     render={({ field, fieldState: { error } }) => (
-                        <div className="w-[300px]">
+                        <div className="w-full my-2">
                             <Checkbox.Group
                                 onChange={field.onChange}
                                 value={field.value}
                             >
                                 {fieldContent.options?.map((item, index) => (
                                     <Checkbox key={index} value={item}>
-                                        {item}
+                                        <span className="text-sm">
+                                            {item}
+                                        </span>
                                     </Checkbox>
                                 ))}
                             </Checkbox.Group>

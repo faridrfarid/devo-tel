@@ -42,7 +42,7 @@ const FieldDateType: React.FC<FieldDateTypeType> = ({
     return (
         <>
             {visible && (
-                <span className="text-black font-medium text-md mb-1">
+                <span className="text-black font-medium text-md my-2">
                     {fieldContent.label}
                 </span>
             )}
@@ -58,6 +58,7 @@ const FieldDateType: React.FC<FieldDateTypeType> = ({
                     render={({ field, fieldState: { error } }) => (
                         <DatePicker
                             value={field.value}
+                            className="w-full h-12"
                             onChange={field.onChange}
                         />
                     )}

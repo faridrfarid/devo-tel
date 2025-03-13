@@ -42,7 +42,7 @@ const FieldInputRangeType: React.FC<FieldInputRangeTypeType> = ({
     return (
         <>
             {visible && (
-                <span className="text-black font-medium text-md mb-1">
+                <span className="text-black font-medium text-base my-2">
                     {fieldContent.label}
                 </span>
             )}
@@ -56,14 +56,17 @@ const FieldInputRangeType: React.FC<FieldInputRangeTypeType> = ({
                             : false,
                     }}
                     render={({ field, fieldState: { error } }) => (
-                        <Slider
-                            min={fieldContent?.validation?.min ?? 0}
-                            max={fieldContent?.validation?.max ?? 100}
-                            step={1}
-                            tooltip={{ open: true }}
-                            value={field.value}
-                            onChange={field.onChange}
-                        />
+                        <div className='w-full h-20 flex items-center'>
+                            <Slider
+                                min={fieldContent?.validation?.min ?? 0}
+                                max={fieldContent?.validation?.max ?? 100}
+                                step={1}
+                                className='w-full h-full'
+                                tooltip={{ open: true }}
+                                value={field.value}
+                                onChange={field.onChange}
+                            />
+                        </div>
                     )}
                 />
             )}

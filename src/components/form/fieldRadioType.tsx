@@ -52,7 +52,7 @@ const FieldRadioType: React.FC<FieldRadioTypeType> = ({
     return (
         <>
             {visible && (
-                <span className="text-black font-medium text-md mb-1">
+                <span className="text-black font-medium text-base my-2">
                     {fieldContent.label}
                 </span>
             )}
@@ -67,20 +67,19 @@ const FieldRadioType: React.FC<FieldRadioTypeType> = ({
                     }}
                     render={({ field, fieldState: { error } }) => (
                         <>
-                            <div className="flex flex-row items-center">
+                            <div className="flex flex-row items-center mb-2">
                                 {fieldContent.options?.map((item) => (
                                     <Radio
                                         value={item}
                                         checked={field.value === item}
                                         onChange={field.onChange}
                                     >
-                                        <span className="ml-2 uppercase">
+                                        <span className="text-sm uppercase">
                                             {item}
                                         </span>
                                     </Radio>
                                 ))}
                             </div>
-                            {error && <span>{error?.message}</span>}
                         </>
                     )}
                 />

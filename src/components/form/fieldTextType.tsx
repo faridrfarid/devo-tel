@@ -6,6 +6,7 @@ import {
     Controller,
     UseFormWatch,
 } from 'react-hook-form';
+import { Input } from 'antd';
 
 interface FieldTextTypeType {
     fieldContent: FormFieldType;
@@ -41,7 +42,7 @@ const FieldTextType: React.FC<FieldTextTypeType> = ({
     return (
         <>
             {visible && (
-                <span className="text-black font-medium text-md mb-1">
+                <span className="text-black font-medium text-md my-2">
                     {fieldContent.label}
                 </span>
             )}
@@ -55,17 +56,12 @@ const FieldTextType: React.FC<FieldTextTypeType> = ({
                             : false,
                     }}
                     render={({ field, fieldState: { error } }) => (
-                        <>
-                            <input
-                                id={fieldContent.id}
-                                className={`pl-4 pr-8 text-md bg-black rounded h-14 w-40 placeholder:text-xs outline-none border-none ${
-                                    error
-                                        ? 'text-red-500 placeholder:text-red-500 bg-red-100'
-                                        : 'text-black bg-white'
-                                }`}
-                                {...field}
-                            />
-                        </>
+                        <Input
+                            placeholder={`Enter ${fieldContent.label} here`}
+                            className="w-full h-12"
+                            onChange={field.onChange}
+                            value={field.value}
+                        />
                     )}
                 />
             )}

@@ -24,10 +24,13 @@ const FormCreatorBase: React.FC<FormCreatorBaseType> = ({ form }) => {
 
     return (
         <div className="flex flex-col mb-4">
-            <span className="text-black font-medium text-2xl">
+            <span className="text-black font-bold text-lg sm:text-2xl mx-auto w-full md:w-[650px] mb-4">
                 {form.title}
             </span>
-            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
+            <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="flex flex-col bg-white border-0.5 shadow-2xl mb-8 mx-auto w-full md:w-[650px] rounded-lg p-6"
+            >
                 {form.fields.map((item) => (
                     <FieldHandler
                         key={item.id}
@@ -39,8 +42,14 @@ const FormCreatorBase: React.FC<FormCreatorBaseType> = ({ form }) => {
                     />
                 ))}
 
-                <div className="w-full flex flex-row justify-start">
-                    <Button loading={loading} type="primary" htmlType="submit">
+                <div className="w-full h-12 mt-4">
+                    <Button
+                        className="w-full h-full"
+                        style={{ height: '100%' }}
+                        loading={loading}
+                        type="primary"
+                        htmlType="submit"
+                    >
                         Submit
                     </Button>
                 </div>

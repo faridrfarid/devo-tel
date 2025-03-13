@@ -82,7 +82,7 @@ const FieldSelectType: React.FC<FieldSelectTypeType> = ({
     return (
         <>
             {visible && (
-                <span className="text-black font-medium text-md mb-1">
+                <span className="text-black font-medium text-md my-2">
                     {fieldContent.label}
                 </span>
             )}
@@ -99,13 +99,16 @@ const FieldSelectType: React.FC<FieldSelectTypeType> = ({
                     render={({ field, fieldState: { error } }) => (
                         <Select
                             placeholder="Select an option"
-                            style={{ width: '100%' }}
+                            style={{ height: 48 }}
+                            className="w-full"
                             onChange={field.onChange}
                             value={field.value}
                         >
                             {options &&
                                 options.map((item, index) => (
-                                    <Option key={index} value={item}>{item}</Option>
+                                    <Option key={index} value={item}>
+                                        {item}
+                                    </Option>
                                 ))}
                         </Select>
                     )}
