@@ -24,7 +24,7 @@ This template provides a minimal setup to get React working in Vite with HMR and
 
 ### List Page
 
-in this page show submitted applications, route to this page is "/"
+this page shows submitted applications, route to this page is "/"
 
 ### Form Page
 
