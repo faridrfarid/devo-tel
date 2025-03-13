@@ -131,6 +131,7 @@ const ListHomePage: FC = () => {
             columnCreator(cols, table.data);
         }
     }, [table, cols]);
+
     return (
         <div>
             {table?.columns && (

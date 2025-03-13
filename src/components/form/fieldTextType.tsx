@@ -57,6 +57,12 @@ const FieldTextType: React.FC<FieldTextTypeType> = ({
                                 ? `Please Enter ${fieldContent?.label}`
                                 : false
                             : false,
+                        pattern: {
+                            value: fieldContent?.validation?.pattern
+                                ? new RegExp(fieldContent?.validation?.pattern)
+                                : '/^.*$/',
+                            message: `Please enter a valid ${fieldContent?.label}`,
+                        },
                     }}
                     render={({ field, fieldState: { error } }) => (
                         <>
