@@ -9,6 +9,7 @@ import {
     UseFormResetField,
 } from 'react-hook-form';
 import { Select } from 'antd';
+import { InputInlineError } from '@components/inline-error';
 
 const { Option } = Select;
 
@@ -27,7 +28,6 @@ const FieldSelectType: React.FC<FieldSelectTypeType> = ({
 }) => {
     const [visible, setVisible] = useState(true);
     const [options, setOptions] = useState<string[]>([]);
-    const ownChanges = watch(fieldContent?.id);
     const changeToLook = fieldContent?.dynamicOptions
         ? watch(fieldContent?.dynamicOptions?.dependsOn)
         : false;
@@ -94,23 +94,28 @@ const FieldSelectType: React.FC<FieldSelectTypeType> = ({
                     rules={{
                         required: fieldContent?.required
                             ? fieldContent?.required
+                                ? `Please Enter ${fieldContent?.label}`
+                                : false
                             : false,
                     }}
                     render={({ field, fieldState: { error } }) => (
-                        <Select
-                            placeholder="Select an option"
-                            style={{ height: 48 }}
-                            className="w-full"
-                            onChange={field.onChange}
-                            value={field.value}
-                        >
-                            {options &&
-                                options.map((item, index) => (
-                                    <Option key={index} value={item}>
-                                        {item}
-                                    </Option>
-                                ))}
-                        </Select>
+                        <>
+                            <Select
+                                placeholder="Select an option"
+                                style={{ height: 48 }}
+                                className="w-full"
+                                onChange={field.onChange}
+                                value={field.value}
+                            >
+                                {options &&
+                                    options.map((item, index) => (
+                                        <Option key={index} value={item}>
+                                            {item}
+                                        </Option>
+                                    ))}
+                            </Select>
+                            <InputInlineError error={error?.message} />
+                        </>
                     )}
                 />
             )}

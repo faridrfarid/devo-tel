@@ -7,6 +7,7 @@ import {
     Controller,
     UseFormWatch,
 } from 'react-hook-form';
+import { InputInlineError } from '@components/inline-error';
 
 interface FieldDateTypeType {
     fieldContent: FormFieldType;
@@ -53,14 +54,19 @@ const FieldDateType: React.FC<FieldDateTypeType> = ({
                     rules={{
                         required: fieldContent?.required
                             ? fieldContent?.required
+                                ? `Please Enter ${fieldContent?.label}`
+                                : false
                             : false,
                     }}
                     render={({ field, fieldState: { error } }) => (
-                        <DatePicker
-                            value={field.value}
-                            className="w-full h-12"
-                            onChange={field.onChange}
-                        />
+                        <>
+                            <DatePicker
+                                value={field.value}
+                                className="w-full h-12"
+                                onChange={field.onChange}
+                            />
+                            <InputInlineError error={error?.message} />
+                        </>
                     )}
                 />
             )}

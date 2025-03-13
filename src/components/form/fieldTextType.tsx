@@ -7,6 +7,7 @@ import {
     UseFormWatch,
 } from 'react-hook-form';
 import { Input } from 'antd';
+import { InputInlineError } from '@components/inline-error';
 
 interface FieldTextTypeType {
     fieldContent: FormFieldType;
@@ -53,15 +54,20 @@ const FieldTextType: React.FC<FieldTextTypeType> = ({
                     rules={{
                         required: fieldContent?.required
                             ? fieldContent?.required
+                                ? `Please Enter ${fieldContent?.label}`
+                                : false
                             : false,
                     }}
                     render={({ field, fieldState: { error } }) => (
-                        <Input
-                            placeholder={`Enter ${fieldContent.label} here`}
-                            className="w-full h-12"
-                            onChange={field.onChange}
-                            value={field.value}
-                        />
+                        <>
+                            <Input
+                                placeholder={`Enter ${fieldContent.label} here`}
+                                className="w-full h-12"
+                                onChange={field.onChange}
+                                value={field.value}
+                            />
+                            <InputInlineError error={error?.message} />
+                        </>
                     )}
                 />
             )}
