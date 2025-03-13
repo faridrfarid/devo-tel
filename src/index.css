@@ -1,49 +1,16 @@
 @import 'tailwindcss';
 
-.dot-flashing {
-    position: relative;
-    width: 10px;
-    height: 10px;
-    border-radius: 5px;
-    background-color: #ffffff;
-    color: #ffffff;
-    animation: dotFlashing 1s infinite linear alternate;
-    animation-delay: 0.5s;
-}
-.dot-flashing::before,
-.dot-flashing::after {
-    content: '';
-    display: inline-block;
-    position: absolute;
-    top: 0;
-}
-.dot-flashing::before {
-    left: -15px;
-    width: 10px;
-    height: 10px;
-    border-radius: 5px;
-    background-color: #ffffff;
-    color: #ffffff;
-    animation: dotFlashing 1s infinite alternate;
-    animation-delay: 0s;
-}
-.dot-flashing::after {
-    left: 15px;
-    width: 10px;
-    height: 10px;
-    border-radius: 5px;
-    background-color: #ffffff;
-    color: #ffffff;
-    animation: dotFlashing 1s infinite alternate;
-    animation-delay: 1s;
+.main-layout {
+    background-color: #ededed;
+    color: #000000;
 }
 
-@keyframes dotFlashing {
-    0% {
-        background-color: #ffffff;
-    }
-    50%,
-    100% {
-        background-color: #ebe6ff;
-    }
+.main-layout-dark {
+    background-color: #6b6b6b;
+    color: #000000;
+}
+
+.dark {
+    background-color: #1a202c; /* Dark background */
+    color: #e2e8f0; /* Light text */
 }

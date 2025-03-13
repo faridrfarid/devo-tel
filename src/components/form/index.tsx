@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Button, notification } from 'antd';
 import FieldHandler from './fieldhandler';
 import { request } from '@apis/request';
+import { useTheme } from '@components/theme';
 
 const key = 'updatable';
 
@@ -12,6 +13,7 @@ interface FormCreatorBaseType {
 }
 
 const FormCreatorBase: React.FC<FormCreatorBaseType> = ({ form }) => {
+    const { isDarkMode } = useTheme();
     const [api, contextHolder] = notification.useNotification();
     const [loading, setLoading] = useState(false);
     const {
@@ -55,7 +57,7 @@ const FormCreatorBase: React.FC<FormCreatorBaseType> = ({ form }) => {
         <>
             {contextHolder}
             <div className="flex flex-col mb-4">
-                <span className="text-black font-bold text-lg sm:text-2xl mx-auto w-full md:w-[650px] mb-4">
+                <span className={`${isDarkMode ? 'text-white' : 'text-black'} text-black font-bold text-lg sm:text-2xl mx-auto w-full md:w-[650px] mb-4`}>
                     {form.title}
                 </span>
                 <form
