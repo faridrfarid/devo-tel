@@ -6,8 +6,11 @@ import { SearchOutlined } from '@ant-design/icons';
 import type { ColumnType } from 'antd/es/table';
 import type { FilterConfirmProps } from 'antd/es/table/interface';
 import { AnyObject } from 'antd/es/_util/type';
+import { useNavigate } from 'react-router-dom';
+import { ROUTES } from '@configs/routes';
 
 const ListHomePage: FC = () => {
+    const navigation = useNavigate();
     const [cols, setCols] = useState<string[]>([]);
     const [pageSize, setPageSize] = useState<number>(10);
     const [columns, setColumns] = useState<any>([]);
@@ -149,7 +152,23 @@ const ListHomePage: FC = () => {
                     </div>
                 </div>
             )}
-            {table?.data && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="flex flex-col mb-6 shadow bg-white rounded-2xl p-6">
+                    <span className="text-lg font-bold mb-6">
+                        You Can Submit New Forms Here
+                    </span>
+                    <div className="w-full h-12">
+                        <Button
+                            className="w-full h-full"
+                            style={{ height: '100%' }}
+                            type="primary"
+                            onClick={() => navigation(ROUTES.FORM)}
+                        >
+                            Go to Form Page
+                        </Button>
+                    </div>
+                    <div className="flex flex-row"></div>
+                </div>
                 <div className="flex flex-col mb-6 shadow bg-white rounded-2xl p-6">
                     <span className="text-lg font-bold mb-6">
                         Set Page Size Want to See here
@@ -165,9 +184,9 @@ const ListHomePage: FC = () => {
                     />
                     <div className="flex flex-row"></div>
                 </div>
-            )}
+            </div>
             {cols.length > 0 && (
-                <div className="bg-white rounded-2xl shadow p-6">
+                <div className="bg-white w-full overflow-x-scroll rounded-2xl shadow p-6">
                     <Table
                         columns={columns}
                         dataSource={table?.data}
