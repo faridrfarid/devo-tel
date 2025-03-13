@@ -28,4 +28,4 @@ this page shows submitted applications, route to this page is "/"
 
 ### Form Page
 
-in this page users can submit their applications with dynamic provided form server, route to this page is "/form"
+in this page users can submit their applications on dynamic provided forms coming from server api, route to this page is "/form"
