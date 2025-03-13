@@ -7,6 +7,7 @@ import {
     Controller,
     UseFormWatch,
 } from 'react-hook-form';
+import { InputInlineError } from '@components/inline-error';
 
 interface FieldInputRangeTypeType {
     fieldContent: FormFieldType;
@@ -53,20 +54,25 @@ const FieldInputRangeType: React.FC<FieldInputRangeTypeType> = ({
                     rules={{
                         required: fieldContent?.required
                             ? fieldContent?.required
+                                ? `Please Enter ${fieldContent?.label}`
+                                : false
                             : false,
                     }}
                     render={({ field, fieldState: { error } }) => (
-                        <div className='w-full h-20 flex items-center'>
-                            <Slider
-                                min={fieldContent?.validation?.min ?? 0}
-                                max={fieldContent?.validation?.max ?? 100}
-                                step={1}
-                                className='w-full h-full'
-                                tooltip={{ open: true }}
-                                value={field.value}
-                                onChange={field.onChange}
-                            />
-                        </div>
+                        <>
+                            <div className="w-full h-20 flex items-center">
+                                <Slider
+                                    min={fieldContent?.validation?.min ?? 0}
+                                    max={fieldContent?.validation?.max ?? 100}
+                                    step={1}
+                                    className="w-full h-full"
+                                    tooltip={{ open: true }}
+                                    value={field.value}
+                                    onChange={field.onChange}
+                                />
+                            </div>
+                            <InputInlineError error={error?.message} />
+                        </>
                     )}
                 />
             )}

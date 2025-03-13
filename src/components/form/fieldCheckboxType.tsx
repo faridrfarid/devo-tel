@@ -7,6 +7,7 @@ import {
     UseFormWatch,
 } from 'react-hook-form';
 import { Checkbox } from 'antd';
+import { InputInlineError } from '@components/inline-error';
 
 interface FieldCheckboxTypeType {
     fieldContent: FormFieldType;
@@ -53,23 +54,30 @@ const FieldCheckboxType: React.FC<FieldCheckboxTypeType> = ({
                     rules={{
                         required: fieldContent?.required
                             ? fieldContent?.required
+                                ? `Please Select At Least One of ${fieldContent.label} Options`
+                                : false
                             : false,
                     }}
                     render={({ field, fieldState: { error } }) => (
-                        <div className="w-full my-2">
-                            <Checkbox.Group
-                                onChange={field.onChange}
-                                value={field.value}
-                            >
-                                {fieldContent.options?.map((item, index) => (
-                                    <Checkbox key={index} value={item}>
-                                        <span className="text-sm">
-                                            {item}
-                                        </span>
-                                    </Checkbox>
-                                ))}
-                            </Checkbox.Group>
-                        </div>
+                        <>
+                            <div className="w-full my-2">
+                                <Checkbox.Group
+                                    onChange={field.onChange}
+                                    value={field.value}
+                                >
+                                    {fieldContent.options?.map(
+                                        (item, index) => (
+                                            <Checkbox key={index} value={item}>
+                                                <span className="text-sm">
+                                                    {item}
+                                                </span>
+                                            </Checkbox>
+                                        )
+                                    )}
+                                </Checkbox.Group>
+                            </div>
+                            <InputInlineError error={error?.message} />
+                        </>
                     )}
                 />
             )}

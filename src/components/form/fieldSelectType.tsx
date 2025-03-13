@@ -94,7 +94,7 @@ const FieldSelectType: React.FC<FieldSelectTypeType> = ({
                     rules={{
                         required: fieldContent?.required
                             ? fieldContent?.required
-                                ? `Please Enter ${fieldContent?.label}`
+                                ? `Please Select One Option of ${fieldContent?.label}`
                                 : false
                             : false,
                     }}
