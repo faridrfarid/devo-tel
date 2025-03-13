@@ -5,6 +5,7 @@ import {
     FieldValues,
     Controller,
     UseFormWatch,
+    UseFormUnregister,
 } from 'react-hook-form';
 import { Checkbox } from 'antd';
 import { InputInlineError } from '@components/inline-error';
@@ -13,12 +14,14 @@ interface FieldCheckboxTypeType {
     fieldContent: FormFieldType;
     watch: UseFormWatch<FieldValues>;
     control: Control;
+    unregister: UseFormUnregister<FieldValues>;
 }
 
 const FieldCheckboxType: React.FC<FieldCheckboxTypeType> = ({
     fieldContent,
     control,
     watch,
+    unregister,
 }) => {
     const [visible, setVisible] = useState(true);
     const visibleWatcher = fieldContent?.visibility
@@ -29,6 +32,7 @@ const FieldCheckboxType: React.FC<FieldCheckboxTypeType> = ({
             if (fieldContent?.visibility?.condition === 'equals') {
                 if (visibleWatcher !== fieldContent?.visibility?.value) {
                     setVisible(false);
+                    unregister(fieldContent.id);
                 } else {
                     setVisible(true);
                 }

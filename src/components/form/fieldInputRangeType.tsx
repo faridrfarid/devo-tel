@@ -6,6 +6,7 @@ import {
     FieldValues,
     Controller,
     UseFormWatch,
+    UseFormUnregister,
 } from 'react-hook-form';
 import { InputInlineError } from '@components/inline-error';
 
@@ -13,12 +14,14 @@ interface FieldInputRangeTypeType {
     fieldContent: FormFieldType;
     watch: UseFormWatch<FieldValues>;
     control: Control;
+    unregister: UseFormUnregister<FieldValues>;
 }
 
 const FieldInputRangeType: React.FC<FieldInputRangeTypeType> = ({
     fieldContent,
     control,
     watch,
+    unregister,
 }) => {
     const [visible, setVisible] = useState(true);
     const visibleWatcher = fieldContent?.visibility
@@ -29,6 +32,7 @@ const FieldInputRangeType: React.FC<FieldInputRangeTypeType> = ({
             if (fieldContent?.visibility?.condition === 'equals') {
                 if (visibleWatcher !== fieldContent?.visibility?.value) {
                     setVisible(false);
+                    unregister(fieldContent.id);
                 } else {
                     setVisible(true);
                 }

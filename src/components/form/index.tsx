@@ -22,6 +22,7 @@ const FormCreatorBase: React.FC<FormCreatorBaseType> = ({ form }) => {
         setValue,
         resetField,
         reset,
+        unregister,
     } = useForm({
         mode: 'onSubmit',
     });
@@ -68,6 +69,7 @@ const FormCreatorBase: React.FC<FormCreatorBaseType> = ({ form }) => {
                             control={control}
                             resetField={resetField}
                             setValue={setValue}
+                            unregister={unregister}
                             field={item}
                         />
                     ))}

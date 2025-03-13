@@ -6,14 +6,17 @@ import {
     UseFormWatch,
     FieldValues,
     UseFormSetValue,
+    UseFormUnregister,
 } from 'react-hook-form';
 import { Radio } from 'antd';
+import { InputInlineError } from '@components/inline-error';
 
 interface FieldRadioTypeType {
     fieldContent: FormFieldType;
     control: Control;
     watch: UseFormWatch<FieldValues>;
     setValue: UseFormSetValue<FieldValues>;
+    unregister: UseFormUnregister<FieldValues>;
 }
 
 const FieldRadioType: React.FC<FieldRadioTypeType> = ({
@@ -21,6 +24,7 @@ const FieldRadioType: React.FC<FieldRadioTypeType> = ({
     control,
     watch,
     setValue,
+    unregister,
 }) => {
     const [visible, setVisible] = useState(true);
     const visibleWatcher = fieldContent?.visibility
@@ -31,6 +35,7 @@ const FieldRadioType: React.FC<FieldRadioTypeType> = ({
             if (fieldContent?.visibility?.condition === 'equals') {
                 if (visibleWatcher !== fieldContent?.visibility?.value) {
                     setVisible(false);
+                    unregister(fieldContent.id);
                 } else {
                     setVisible(true);
                 }
@@ -62,7 +67,7 @@ const FieldRadioType: React.FC<FieldRadioTypeType> = ({
                     control={control}
                     rules={{
                         required: fieldContent?.required
-                            ? fieldContent?.required
+                            ? `Please Select One Option of ${fieldContent?.label}`
                             : false,
                     }}
                     render={({ field, fieldState: { error } }) => (
@@ -80,6 +85,7 @@ const FieldRadioType: React.FC<FieldRadioTypeType> = ({
                                     </Radio>
                                 ))}
                             </div>
+                            <InputInlineError error={error?.message} />
                         </>
                     )}
                 />

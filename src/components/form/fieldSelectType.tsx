@@ -7,6 +7,7 @@ import {
     Controller,
     UseFormWatch,
     UseFormResetField,
+    UseFormUnregister,
 } from 'react-hook-form';
 import { Select } from 'antd';
 import { InputInlineError } from '@components/inline-error';
@@ -18,6 +19,7 @@ interface FieldSelectTypeType {
     watch: UseFormWatch<FieldValues>;
     control: Control;
     resetField: UseFormResetField<FieldValues>;
+    unregister: UseFormUnregister<FieldValues>;
 }
 
 const FieldSelectType: React.FC<FieldSelectTypeType> = ({
@@ -25,6 +27,7 @@ const FieldSelectType: React.FC<FieldSelectTypeType> = ({
     control,
     watch,
     resetField,
+    unregister,
 }) => {
     const [visible, setVisible] = useState(true);
     const [options, setOptions] = useState<string[]>([]);
@@ -68,6 +71,7 @@ const FieldSelectType: React.FC<FieldSelectTypeType> = ({
             if (fieldContent?.visibility?.condition === 'equals') {
                 if (visibleWatcher !== fieldContent?.visibility?.value) {
                     setVisible(false);
+                    unregister(fieldContent.id);
                 } else {
                     setVisible(true);
                 }

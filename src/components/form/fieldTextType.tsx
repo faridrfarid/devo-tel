@@ -5,6 +5,7 @@ import {
     FieldValues,
     Controller,
     UseFormWatch,
+    UseFormUnregister,
 } from 'react-hook-form';
 import { Input } from 'antd';
 import { InputInlineError } from '@components/inline-error';
@@ -13,12 +14,14 @@ interface FieldTextTypeType {
     fieldContent: FormFieldType;
     watch: UseFormWatch<FieldValues>;
     control: Control;
+    unregister: UseFormUnregister<FieldValues>;
 }
 
 const FieldTextType: React.FC<FieldTextTypeType> = ({
     fieldContent,
     control,
     watch,
+    unregister,
 }) => {
     const [visible, setVisible] = useState(true);
     const visibleWatcher = fieldContent?.visibility
@@ -29,6 +32,7 @@ const FieldTextType: React.FC<FieldTextTypeType> = ({
             if (fieldContent?.visibility?.condition === 'equals') {
                 if (visibleWatcher !== fieldContent?.visibility?.value) {
                     setVisible(false);
+                    unregister(fieldContent.id);
                 } else {
                     setVisible(true);
                 }
