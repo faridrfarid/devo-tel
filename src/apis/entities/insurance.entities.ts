@@ -49,5 +49,6 @@ export interface InsuranceFormSubmitRequestType {
 }
 
 export interface InsuranceFormSubmissionResponseType {
-    structure: string;
+    columns: string[];
+    data: any[];
 }

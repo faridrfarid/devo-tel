@@ -51,5 +51,5 @@ export const ApiEndpoints: IEndpointType = {
     insuranceForms: () => `/api/insurance/forms`,
     states: () => `/api/getStates`,
     insuranceFormsSubmit: () => `/api/insurance/forms/submit`,
-    insuranceFormsSubmissions: () => `/api/insurance/forms/submission`,
+    insuranceFormsSubmissions: () => `/api/insurance/forms/submissions`,
 };
